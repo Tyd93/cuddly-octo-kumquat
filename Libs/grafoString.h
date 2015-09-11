@@ -8,6 +8,11 @@
 #define STDLIB_H
 #endif
 
+#ifndef STRING_H
+#include <string.h>
+#define STRING_H
+#endif
+
 /*
 *Estructura basica del nodo contenido
 *en la lista de adyacencia de la cual
@@ -16,6 +21,7 @@
 
 typedef struct nodoA{
     int dest;
+    char nombre[20];
     struct nodoA* sig;
 }nodo;
 
@@ -44,9 +50,10 @@ typedef struct eGrafo{
 *en la lista de adyacencia.
 */
 
-nodo *nuevoNodoA(int dest){
+nodo *nuevoNodoA(int dest, char nombre[]){
     nodo *nuevoNodo = (nodo *) malloc(sizeof(nodo));
     nuevoNodo->dest = dest;
+    nuevoNodo->nombre = nombre;
     nuevoNodo->sig = NULL;
     return nuevoNodo;
 }
@@ -80,17 +87,17 @@ grafo* crearGrafo(int V){
 *entre un vertice y otro.
 */
 
-void agregarArista(grafo *g, int src, int dest){
+void agregarArista(grafo *g, int src, int dest, char nombre[]){
     //Agrega una arista desde un nodo de 
     //adyacencia a un nodo destino.
     //Nota: el nuevo nodo enlazado quedara en principio.
-    nodo *nuevoNodo = nuevoNodoA(dest);
+    nodo *nuevoNodo = nuevoNodoA(dest,nombre);
     nuevoNodo->sig = g->arreglo[src].origen;
     g->arreglo[src].origen = nuevoNodo;
  
     //Dado que el grafo en no dirigido,
     //tenemos que apuntar en ambas direcciones.
-    nuevoNodo = nuevoNodoA(src);
+    nuevoNodo = nuevoNodoA(src, nombre);
     nuevoNodo->sig = g->arreglo[dest].origen;
     g->arreglo[dest].origen = nuevoNodo;
 }
@@ -105,7 +112,7 @@ void imprimirGrafo(grafo *g){
         nodo *pCrawl = g->arreglo[v].origen;
         printf("\n Lista de adyacencia del vertice %d\n origen ", v);
         while (pCrawl){
-            printf("-> %d", pCrawl->dest);
+            printf("-> %s", pCrawl->nombre);
             pCrawl = pCrawl->sig;
         }
         printf("\n");
