@@ -15,7 +15,7 @@
 
 typedef struct eVecino{
 	int numeroVertice;
-	vecino *siguiente;
+	struct eVecino *siguiente;
 }vecino;
 
 typedef struct eVertice{
