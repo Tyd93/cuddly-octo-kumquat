@@ -9,7 +9,7 @@
 #endif
 
 #ifndef VERTICE_H
-#include "Libs/vertice.h"
+#include "vertice.h"
 #define VERTICE_H
 #endif
 
@@ -29,7 +29,7 @@ vecino *crearVecino(int destino){
 	return aux; 
 }
 
-/*
+
 // Agregare los nombres automaticamente desde acá.
 // En futuras versiones lo ideal seria hacerlo desde el main.
 void inicializarLista(grafo *g){
@@ -45,16 +45,15 @@ void inicializarLista(grafo *g){
 		g->arreglo[i].color = -1;
 	}
 }
-*/
 
 grafo *crearGrafo(int verti){
 	grafo *gAux = (grafo *)malloc(sizeof(grafo));
-	grafo->v = verti;
-	grafo->arreglo = (vertex *)malloc(verti * sizeof(vertex));
+	gAux->v = verti;
+	gAux->arreglo = (vertex *)malloc(verti * sizeof(vertex));
 	for (int i = 0; i < verti; i++){
 		gAux->arreglo[i].listaAdyacente = NULL;
 	}
-	//inicializarLista(gAux);
+	inicializarLista(gAux);
 	return gAux;
 }
 /*
@@ -77,9 +76,9 @@ void agregarConexion(grafo *g, int origen, int destino){
 void imprimirGrafo(grafo *g){
 	for (int v = 0; v < g->v; v++){
 		vecino *auxPrint = g->arreglo[v].listaAdyacente;
-		printf("Ciudades con ruta hacia \n%s", g->arreglo[v]->nombre);
+		printf("Ciudades con ruta hacia \n%s", g->arreglo[v].nombre);
 		while(auxPrint != NULL){
-			printf("-> %s ", g->arreglo[auxPrint->numeroVertice]->nombre);
+			printf("-> %s ", g->arreglo[auxPrint->numeroVertice].nombre);
 			auxPrint = auxPrint->siguiente;
 		}
 		printf("\n");
