@@ -24,6 +24,17 @@ typedef struct eCola{
 	vecino *inicio, *final;//basicamente guardara el numero del vertice en el arreglo
 }cola;
 
+//Funcion muy importante para ver si la cola esta vacia
+
+int esVaciaCola(cola *c){
+	if(c->tamano == 0){
+		return 1;
+	}
+	else{
+		return 0;
+	}
+}
+
 //Inicializo la cola, vacia, con tamaño cero
 //para posteriores operaciones.
 cola *crearCola(){
