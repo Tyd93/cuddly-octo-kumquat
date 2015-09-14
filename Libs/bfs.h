@@ -42,7 +42,6 @@ void bfsGrafo(grafo *g, int raiz){ //el parametro es un indice que se usara en e
 				printf("%c -> %c\n", g->arreglo[u].nombre, g->arreglo[g->arreglo[u].listaAdyacente->numeroVertice].nombre); //imprimo el paso de vertices
 				g->arreglo[g->arreglo[u].listaAdyacente->numeroVertice].color = 0;//marco como gris el nodo agregado
 				llegada(c, g->arreglo[g->arreglo[u].listaAdyacente->numeroVertice].listaAdyacente->numeroVertice); //encolo el vertice visitado
-				g->arreglo[u].listaAdyacente = g->arreglo[u].listaAdyacente->siguiente;//avanzo en la lista de adyacencia
 			}
 			g->arreglo[u].listaAdyacente = g->arreglo[u].listaAdyacente->siguiente; //en el caso de no encontrar nada, avanzo
 		}
