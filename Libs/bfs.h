@@ -29,7 +29,23 @@
 *Dentro del codigo BFS.
 */
 
-void bfsGrafo(grafo *g, int nodoFuente){ //el parametro es un indice que se usara en el grafo para hallar el nodo fuente.
-	g->arreglo[nodoFuente].color = 0;
-	int padre
+void bfsGrafo(grafo *g, int raiz){ //el parametro es un indice que se usara en el grafo para hallar el nodo fuente.
+	int u = 0; //iniciamos este int que nos servira de auxiliar para recorrer y operar.
+	g->arreglo[raiz].color = 0; //marco gris la raiz
+	cola *c;
+	c = crearCola(); //Creo una cola vacia
+	llegada(c,raiz); //encolo a el nodo raiz
+	while(c->tamano == 0){
+		u = atencion(c); //Quito de la cola a
+		while(g->arreglo[u].listaAdyacente = NULL){
+			if(g->arreglo[g->arreglo[u].listaAdyacente->numeroVertice].color == -1){ //pregunto si el vertice es blanco
+				printf("%c -> %c\n", g->arreglo[u].nombre, g->arreglo[g->arreglo[u].listaAdyacente->numeroVertice].nombre); //imprimo el paso de vertices
+				g->arreglo[g->arreglo[u].listaAdyacente->numeroVertice].color = 0;//marco como gris el nodo agregado
+				llegada(c, g->arreglo[g->arreglo[u].listaAdyacente->numeroVertice].listaAdyacente->numeroVertice); //encolo el vertice visitado
+				g->arreglo[u].listaAdyacente = g->arreglo[u].listaAdyacente->siguiente;//avanzo en la lista de adyacencia
+			}
+			g->arreglo[u].listaAdyacente = g->arreglo[u].listaAdyacente->siguiente; //en el caso de no encontrar nada, avanzo
+		}
+		g->arreglo[u].color = 1; //marco como negro el nodo ya completado
+	}
 }

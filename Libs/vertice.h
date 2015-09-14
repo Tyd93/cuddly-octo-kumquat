@@ -19,7 +19,7 @@ typedef struct eVecino{
 }vecino;
 
 typedef struct eVertice{
-	char nombre[];
+	char nombre;
 	int color; //-1 blanco, 0 gris, 1 negro.
 	vecino *listaAdyacente;
 }vertex;
